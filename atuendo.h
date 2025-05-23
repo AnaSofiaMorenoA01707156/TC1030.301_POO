@@ -13,7 +13,7 @@ class Atuendo{
 protected:
   string tipo; //Atributos que hereda a clases hijas
   int dia;
-  Prenda* prendas[3]; //Se guardan los apuntadores de los objetos de *cualquier* clase derivada de Prenda, para guardarse
+  Prenda *prendas[3]; //Se guardan los apuntadores de los objetos de *cualquier* clase derivada de Prenda, para guardarse
   //en un solo arreglo del tipo de la clase madre
   int i=0;
 public: //Métodos que hereda a clases hijas
@@ -45,7 +45,7 @@ void  Atuendo::set_dia(int di){
 }
 
 void Atuendo::agregarSuperior(string mat, string col){
-  prendas[i]=new Superior(mat, col); //Se crea el objeto dinámico en el heap para poder obtener y guardar su apuntador
+  prendas[i]=new Superior(mat, col); //Se crea el objeto dinamico en el heap para poder obtener y guardar su apuntador
   i++;
 }
 
@@ -67,14 +67,14 @@ void Atuendo::agregarZapatos(string mat, string col){
 class Casual: public Atuendo{
 public:
   Casual():Atuendo("Casual"){}; //Constructor default a partir del de Atuendo (solo con atributo característico/invariable de la clase hija)
-  Casual(int dI, string act):Atuendo("Casual", dI){}; //Constructor completo definido (sobrecarga)
+  Casual(int dI):Atuendo("Casual", dI){}; //Constructor completo definido (sobrecarga)
   void resumenAtuendo();
 };
 void Casual::resumenAtuendo(){
   cout<<"Un atuendo casual, para uso cotidiano durante tu viaje, que has planteado usar en el dia "<<dia<<" de tu viaje."<<endl;
-  cout<<"Este está compuesto por..."<<endl;
-  for (int j=0:i<prendas.length():j++){
-    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" , y de color "prendas[j]->get_color()<<endl;
+  cout<<"Este esta compuesto por..."<<endl;
+  for (int j=0;j<3;j++){
+    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" y de color "<<prendas[j]->get_color()<<endl;
   }
 }
 
@@ -96,10 +96,10 @@ void Formal::set_evento(string e){
   evento=e;
 }
 void Formal::resumenAtuendo(){
-  cout<<"Un atuendo formal, que has planteado usar en el dia "<<dia<<" de tu viaje, porque quizás tengas un evento: "<<evento<<endl;
-  cout<<"Este está compuesto por..."<<endl;
-  for (int j=0:i<prendas.length():j++){
-    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" , y de color "prendas[j]->get_color()<<endl;
+  cout<<"Un atuendo formal, que has planteado usar en el dia "<<dia<<" de tu viaje, porque quizas tengas un evento: "<<evento<<endl;
+  cout<<"Este esta compuesto por..."<<endl;
+  for (int j=0;j<3;j++){
+    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" y de color "<<prendas[j]->get_color()<<endl;
   }
 }
 
@@ -121,10 +121,11 @@ void Fiesta::set_tematica(string t){
   tematica=t;
 }
 void Fiesta::resumenAtuendo(){
-  cout<<"Un atuendo para fiesta con temática " <<tematica<<", que has planteado usar en el dia "<<dia<<" de tu viaje."<<endl;
-  cout<<"Este está compuesto por..."<<endl;
-  for (int j=0:i<prendas.length():j++){
-    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" , y de color "prendas[j]->get_color()<<endl;
+  cout<<"Un atuendo para fiesta con tematica "<<tematica<<", que has planteado usar en el dia "<<dia<<" de tu viaje."<<endl;
+  cout<<"Este esta compuesto por..."<<endl;
+  for (int j=0;j<3;j++){
+    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" y de color "<<prendas[j]->get_color()<<endl;
   }
+}
 
 #endif

@@ -10,8 +10,8 @@ int main(){
   int crear, dia, comp;
   string m, c, m2, c2, m3, c3;
   string act, ev, tem;
-  cout<<"Bienvenido a Viajero Vanguardista :)"<<endl;
-  cout<<"Que tipo de atuendo le gustaria planear? \n Casual=1  Fiesta=2  Formal=3 \n Ingrese un numero de las opciones, u otro número para salir del programa."<<endl;
+  cout<<"Bienvenido, Viajero Vanguardista :)"<<endl;
+  cout<<"Que tipo de atuendo le gustaria planear? \n Casual=1  Fiesta=2  Formal=3 \n Ingrese un numero de las opciones, u otro numero para salir del programa."<<endl;
   cin>>crear;
   cout<<"Que dia de tu viaje vas a usar este atuendo?"<<endl;
   cin>>dia;
@@ -32,6 +32,7 @@ int main(){
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
           atCasual.agregarZapatos(m3,c3);
+          break;
         }
         case 2:{
           cout<<"Perfecto. Ingresa el material de tu prenda superior: ";
@@ -43,21 +44,24 @@ int main(){
           cin>>m2;
           cout<<"Ingresa el color de tu prenda inferior: ";
           cin>>c2;
-          atCasual.agregarSuperior(m2,c2);
+          atCasual.agregarInferior(m2,c2);
           cout<<"Ingresa el material de los zapatos que usaras: ";
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
           atCasual.agregarZapatos(m3,c3);
+          break;
         }
-        case 3:{
-          cout<<"Opción no válida, inténtalo de nuevo."<<endl;
+        default:{
+          cout<<"Opcion no valida, intentalo de nuevo."<<endl;
+          cin>>comp;
         }
-      }
-      break;
     }
+      atCasual.resumenAtuendo();
+      break;
+  }
     case 2:{
-      cout<<"El atuendo de fiesta es con alguna temática? (Si no escribe ninguna) ";
+      cout<<"Cual es la tematica del atuendo o de fiesta? (O escribe ninguna si no hay) ";
       cin>>tem;
       Fiesta atFiesta(dia, tem);
       switch(comp){
@@ -72,6 +76,7 @@ int main(){
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
           atFiesta.agregarZapatos(m3,c3);
+          break;
         }
         case 2:{
           cout<<"Perfecto. Ingresa el material de tu prenda superior: ";
@@ -83,21 +88,24 @@ int main(){
           cin>>m2;
           cout<<"Ingresa el color de tu prenda inferior: ";
           cin>>c2;
-          atFiesta.agregarSuperior(m2,c2);
+          atFiesta.agregarInferior(m2,c2);
           cout<<"Ingresa el material de los zapatos que usaras: ";
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
           atFiesta.agregarZapatos(m3,c3);
+          break;
         }
-        case 3:{
-          cout<<"Opción no válida, inténtalo de nuevo."<<endl;
+        default:{
+          cout<<"Opcion no valida, intentalo de nuevo."<<endl;
+          cin>>comp;
         }
       }
+      atFiesta.resumenAtuendo();
       break;
     }
     case 3:{
-      cout<<"Lo usaras para algun evento especial en tu viaje? (Si no escribe ninguno) ";
+      cout<<"Cual es el evento para el que usaras este atuendo en tu viaje? (O escribe ninguno si no es para un evento) ";
       cin>>ev;
       Formal atFormal(dia, ev);
       switch(comp){
@@ -112,6 +120,7 @@ int main(){
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
           atFormal.agregarZapatos(m3,c3);
+          break;
         }
         case 2:{
           cout<<"Perfecto. Ingresa el material de tu prenda superior: ";
@@ -123,21 +132,25 @@ int main(){
           cin>>m2;
           cout<<"Ingresa el color de tu prenda inferior: ";
           cin>>c2;
-          atFormal.agregarSuperior(m2,c2);
+          atFormal.agregarInferior(m2,c2);
           cout<<"Ingresa el material de los zapatos que usaras: ";
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
           atFormal.agregarZapatos(m3,c3);
+          break;
         }
-        case 3:{
-          cout<<"Opción no válida, inténtalo de nuevo."<<endl;
+        default:{
+          cout<<"Opcion no valida, intentalo de nuevo."<<endl;
+          cin>>comp;
         }
       }
+      atFormal.resumenAtuendo();
       break;
     }
     default:{
       cout<<"¡Adios! :)";
+      break;
     }
   }
   return 0;
