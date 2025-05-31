@@ -4,7 +4,7 @@
 
 #include "prenda.h"
 #include <string>
-#include<iostream>
+#include <iostream>
 using namespace std;  //HACER MÉTODOS AGREGA Y RESUMEN
 
 //Clase madre Atuendo, que hereda a las clases de atuendos:
@@ -23,11 +23,11 @@ public: //Métodos que hereda a clases hijas
   string get_tipo();
   int get_dia(); //Getters
   void set_dia(int); //Setter
-  void agregarSuperior(string, string); //Métodos para agregar objetos de las clases derivadas de Prenda usando su constructor (composición)
+  void agregarSuperior(string, string, string); //Métodos para agregar objetos de las clases derivadas de Prenda usando su constructor (composición)
   //y guardarlos en el arreglo de prendas
-  void agregarInferior(string, string);
+  void agregarInferior(string, string, string);
   void agregarCompleto(string, string);
-  void agregarZapatos(string, string);
+  void agregarZapatos(string, string, string);
   void resumenAtuendo(); //Método similar a un to_string para imprimir atributos de objeto Atuendo
   //en cada clase hija se modifica por lo que ejemplifica la sobreescritura de métodos heredados
 };
@@ -44,13 +44,13 @@ void  Atuendo::set_dia(int di){
   dia=di;
 }
 
-void Atuendo::agregarSuperior(string mat, string col){
-  prendas[i]=new Superior(mat, col); //Se crea el objeto dinamico en el heap para poder obtener y guardar su apuntador
+void Atuendo::agregarSuperior(string mat, string col, string m){
+  prendas[i]=new Superior(mat, col, m); //Se crea el objeto dinamico en el heap para poder obtener y guardar su apuntador
   i++;
 }
 
-void Atuendo::agregarInferior(string mat, string col){
-  prendas[i]=new Inferior(mat, col);
+void Atuendo::agregarInferior(string mat, string col, string l){
+  prendas[i]=new Inferior(mat, col, l);
   i++;
 }
 
@@ -58,8 +58,8 @@ void Atuendo::agregarCompleto(string mat, string col){
   prendas[i]=new Completo(mat, col);
   i++;
 }
-void Atuendo::agregarZapatos(string mat, string col){
-  prendas[i]=new Zapatos(mat, col);
+void Atuendo::agregarZapatos(string mat, string col, string c){
+  prendas[i]=new Zapatos(mat, col, c);
   i++;
 }
 
@@ -74,7 +74,8 @@ void Casual::resumenAtuendo(){
   cout<<"Un atuendo casual, para uso cotidiano durante tu viaje, que has planteado usar en el dia "<<dia<<" de tu viaje."<<endl;
   cout<<"Este esta compuesto por..."<<endl;
   for (int j=0;j<3;j++){
-    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" y de color "<<prendas[j]->get_color()<<endl;
+    cout<<"Prenda "<<prendas[j]->get_tipo()<<endl;
+    prendas[j]->infoPrenda();
   }
 }
 
@@ -99,7 +100,8 @@ void Formal::resumenAtuendo(){
   cout<<"Un atuendo formal, que has planteado usar en el dia "<<dia<<" de tu viaje, porque quizas tengas un evento: "<<evento<<endl;
   cout<<"Este esta compuesto por..."<<endl;
   for (int j=0;j<3;j++){
-    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" y de color "<<prendas[j]->get_color()<<endl;
+    cout<<"Prenda "<<prendas[j]->get_tipo()<<endl;
+    prendas[j]->infoPrenda();
   }
 }
 
@@ -124,7 +126,8 @@ void Fiesta::resumenAtuendo(){
   cout<<"Un atuendo para fiesta con tematica "<<tematica<<", que has planteado usar en el dia "<<dia<<" de tu viaje."<<endl;
   cout<<"Este esta compuesto por..."<<endl;
   for (int j=0;j<3;j++){
-    cout<<"-una prenda tipo "<<prendas[j]->get_tipo()<<" de "<<prendas[j]->get_material()<<" y de color "<<prendas[j]->get_color()<<endl;
+    cout<<"Prenda "<<prendas[j]->get_tipo()<<endl;
+    prendas[j]->infoPrenda(); //aquí el método de infoPrenda actuará distinto para las prendas con el uso de polimorfismo en sus clases
   }
 }
 

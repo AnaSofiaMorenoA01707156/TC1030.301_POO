@@ -8,7 +8,7 @@ using namespace std;
 
 int main(){
   int crear, dia, comp;
-  string m, c, m2, c2, m3, c3;
+  string m, c, m2, c2, m3, c3, man, l, cal;
   string act, ev, tem;
   cout<<"Bienvenido, Viajero Vanguardista :)"<<endl;
   cout<<"Que tipo de atuendo le gustaria planear? \n Casual=1  Fiesta=2  Formal=3 \n Ingrese un numero de las opciones, u otro numero para salir del programa."<<endl;
@@ -31,7 +31,9 @@ int main(){
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
-          atCasual.agregarZapatos(m3,c3);
+          cout<<"Ingresa el tipo de calzado (tenis, huaraches, tacones, etc.): ";
+          cin>>cal;
+          atCasual.agregarZapatos(m3,c3, cal);
           break;
         }
         case 2:{
@@ -39,17 +41,23 @@ int main(){
           cin>>m;
           cout<<"Ingresa el color de tu prenda superior: ";
           cin>>c;
-          atCasual.agregarSuperior(m,c);
+          cout<<"Ingresa el tipo de mangas de tu prenda superior: ";
+          cin>>man;
+          atCasual.agregarSuperior(m,c, man);
           cout<<"Ingresa el material de tu prenda inferior: ";
           cin>>m2;
           cout<<"Ingresa el color de tu prenda inferior: ";
           cin>>c2;
-          atCasual.agregarInferior(m2,c2);
+          cout<<"Ingresa el tipo de largo/diseno de tu prenda inferior (shorts, pantalones largos, falda corta, etc.): ";
+          cin>>l;
+          atCasual.agregarInferior(m2,c2,l);
           cout<<"Ingresa el material de los zapatos que usaras: ";
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
-          atCasual.agregarZapatos(m3,c3);
+          cout<<"Ingresa el tipo de calzado (tenis, huaraches, tacones, etc.): ";
+          cin>>cal;
+          atCasual.agregarZapatos(m3,c3, cal);
           break;
         }
         default:{
@@ -75,7 +83,9 @@ int main(){
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
-          atFiesta.agregarZapatos(m3,c3);
+          cout<<"Ingresa el tipo de calzado (tenis, huaraches, tacones, etc.): ";
+          cin>>cal;
+          atFiesta.agregarZapatos(m3,c3, cal);
           break;
         }
         case 2:{
@@ -83,17 +93,23 @@ int main(){
           cin>>m;
           cout<<"Ingresa el color de tu prenda superior: ";
           cin>>c;
-          atFiesta.agregarSuperior(m,c);
+          cout<<"Ingresa el tipo de mangas de tu prenda superior: ";
+          cin>>man;
+          atFiesta.agregarSuperior(m,c, man);
           cout<<"Ingresa el material de tu prenda inferior: ";
           cin>>m2;
           cout<<"Ingresa el color de tu prenda inferior: ";
           cin>>c2;
-          atFiesta.agregarInferior(m2,c2);
+          cout<<"Ingresa el tipo de largo/diseno de tu prenda inferior (shorts, pantalones largos, falda corta, etc.): ";
+          cin>>l;
+          atFiesta.agregarInferior(m2,c2,l);
           cout<<"Ingresa el material de los zapatos que usaras: ";
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
-          atFiesta.agregarZapatos(m3,c3);
+          cout<<"Ingresa el tipo de calzado (tenis, huaraches, tacones, etc.): ";
+          cin>>cal;
+          atFiesta.agregarZapatos(m3,c3, cal);
           break;
         }
         default:{
@@ -119,7 +135,9 @@ int main(){
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
-          atFormal.agregarZapatos(m3,c3);
+          cout<<"Ingresa el tipo de calzado (tenis, huaraches, tacones, etc.): ";
+          cin>>cal;
+          atFormal.agregarZapatos(m3,c3, cal);
           break;
         }
         case 2:{
@@ -127,17 +145,23 @@ int main(){
           cin>>m;
           cout<<"Ingresa el color de tu prenda superior: ";
           cin>>c;
-          atFormal.agregarSuperior(m,c);
+          cout<<"Ingresa el tipo de mangas de tu prenda superior: ";
+          cin>>man;
+          atFormal.agregarSuperior(m,c, man);
           cout<<"Ingresa el material de tu prenda inferior: ";
           cin>>m2;
           cout<<"Ingresa el color de tu prenda inferior: ";
           cin>>c2;
-          atFormal.agregarInferior(m2,c2);
+          cout<<"Ingresa el tipo de largo/diseno de tu prenda inferior (shorts, pantalones largos, falda corta, etc.): ";
+          cin>>l;
+          atFormal.agregarInferior(m2,c2,l);
           cout<<"Ingresa el material de los zapatos que usaras: ";
           cin>>m3;
           cout<<"Ingresa el color de los zapatos que usaras: ";
           cin>>c3;
-          atFormal.agregarZapatos(m3,c3);
+          cout<<"Ingresa el tipo de calzado (tenis, huaraches, tacones, etc.): ";
+          cin>>cal;
+          atFormal.agregarZapatos(m3,c3, cal);
           break;
         }
         default:{

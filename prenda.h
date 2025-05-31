@@ -3,6 +3,7 @@
 #define PRENDA_H
 
 #include <string>
+#include <iostream>
 using namespace std;
 
 //Clase madre Prenda, que hereda a las clases de ropa: superior, inferior, completo y zapatos
@@ -20,6 +21,7 @@ public: //Métodos que hereda a clases hijas
   string get_tipo();//Getters
   void set_material(string);
   void set_color(string);//Setters
+  virtual void infoPrenda(); //Función con polimorfismo entre las clases de prenda
 };
 
 string Prenda::get_material(){
@@ -42,29 +44,57 @@ void Prenda::set_color(string co){
   color=co;
 }
 
+void Prenda::infoPrenda(){
+  cout<<""<<endl;
+}
+
 //Clase hija Superior. Herencia pública de clase Prenda
 class Superior: public Prenda{
+private:
+  string mangas;
 public:
   Superior():Prenda("Superior"){}; //Constructor default a partir del de Prenda (solo con atributo característico/invariable de la clase hija)
-  Superior(string mat, string col):Prenda(mat, col, "Superior"){}; //Constructor completo definido (sobrecarga)
+  Superior(string mat, string col, string m):Prenda(mat, col, "Superior"), mangas(m){}; //Constructor completo definido (sobrecarga)
+  void infoPrenda();
 };
+void Superior::infoPrenda(){ //función sobreescrita, utilizada usando polimorfismo
+  cout<<"Material: "<<material<<"\nColor: "<<color<<"\nMangas: "<<mangas<<endl;
+}
+
 //Clase hija Inferior. Herencia pública de clase Prenda
 class Inferior: public Prenda{
+  string largo;
 public:
   Inferior():Prenda("Inferior"){};
-  Inferior(string mat, string col):Prenda(mat, col, "Inferior"){};
+  Inferior(string mat, string col, string l):Prenda(mat, col, "Inferior"), largo(l){};
+  void infoPrenda();
 };
+void Inferior::infoPrenda(){
+  cout<<"Material: "<<material<<"\nColor: "<<color<<"\nTipo de largo/diseno: "<<largo<<endl;
+}
+
 //Clase hija Completo. Herencia pública  de clase Prenda
 class Completo: public Prenda{
 public:
   Completo():Prenda("Una pieza"){};
   Completo(string mat, string col):Prenda(mat, col, "Una pieza"){};
+  void infoPrenda();
 };
+void Completo::infoPrenda(){
+  cout<<"Material: "<<material<<"\nColor: "<<color<<endl;
+}
+
 //Clase hija Zapatos. Herencia pública  de clase Prenda
 class Zapatos: public Prenda{
+private:
+  string calzadoTipo;
 public:
   Zapatos():Prenda("Zapatos"){};
-  Zapatos(string mat, string col):Prenda(mat, col, "Zapatos"){};
+  Zapatos(string mat, string col, string c):Prenda(mat, col, "Zapatos"), calzadoTipo(c){};
+  void infoPrenda();
 };
+void Zapatos::infoPrenda(){
+  cout<<"Material: "<<material<<"\nColor: "<<color<<"\nTipo de calzado: "<<calzadoTipo<<endl;
+}
 
 #endif
