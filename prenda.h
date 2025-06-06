@@ -21,7 +21,8 @@ public: //Métodos que hereda a clases hijas
   string get_tipo();//Getters
   void set_material(string);
   void set_color(string);//Setters
-  virtual void infoPrenda(); //Función con polimorfismo entre las clases de prenda
+  virtual void infoPrenda()=0; //Función pure virtual, hace que la clase prenda sea abstracta y permite polimorfimo en este
+  //método obligatorio entre las clases derivadas de Prenda, cuyos objetos se crean usando la memoria Heap
 };
 
 string Prenda::get_material(){
@@ -44,10 +45,6 @@ void Prenda::set_color(string co){
   color=co;
 }
 
-void Prenda::infoPrenda(){
-  cout<<""<<endl;
-}
-
 //Clase hija Superior. Herencia pública de clase Prenda
 class Superior: public Prenda{
 private:
@@ -57,7 +54,7 @@ public:
   Superior(string mat, string col, string m):Prenda(mat, col, "Superior"), mangas(m){}; //Constructor completo definido (sobrecarga)
   void infoPrenda();
 };
-void Superior::infoPrenda(){ //función sobreescrita, utilizada usando polimorfismo
+void Superior::infoPrenda(){ //Función de su "interfaz" Prenda sobreescrita (diferente en cada clase derivada), pero usando polimorfismo para el método
   cout<<"Material: "<<material<<"\nColor: "<<color<<"\nMangas: "<<mangas<<endl;
 }
 
@@ -76,8 +73,8 @@ void Inferior::infoPrenda(){
 //Clase hija Completo. Herencia pública  de clase Prenda
 class Completo: public Prenda{
 public:
-  Completo():Prenda("Una pieza"){};
-  Completo(string mat, string col):Prenda(mat, col, "Una pieza"){};
+  Completo():Prenda("de una pieza"){};
+  Completo(string mat, string col):Prenda(mat, col, "de una pieza"){};
   void infoPrenda();
 };
 void Completo::infoPrenda(){

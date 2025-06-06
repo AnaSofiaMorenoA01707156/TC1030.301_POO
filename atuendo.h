@@ -13,12 +13,13 @@ class Atuendo{
 protected:
   string tipo; //Atributos que hereda a clases hijas
   int dia;
-  Prenda *prendas[3]; //Se guardan los apuntadores de los objetos de *cualquier* clase derivada de Prenda, para guardarse
-  //en un solo arreglo del tipo de la clase madre
-  int i=0;
+  Prenda** prendas; //Se guardan los apuntadores de los objetos de *cualquier* clase derivada de Prenda, para guardarse en un solo arreglo del
+  //tipo de la clase base Prenda, el tamaño del arreglo depende del número de prendas que el usuario use en su atuendo (arreglo dinámico de apuntadores)
+  int cont;
+  int determ;
 public: //Métodos que hereda a clases hijas
-  Atuendo(string t):tipo(t), dia(0){}; //Constructor default
-  Atuendo(string t, int d):tipo(t), dia(d){}; //Constructor definido
+  Atuendo(string t):tipo(t), dia(0), cont(0){}; //Constructor default
+  Atuendo(string t, int d, int det):tipo(t), dia(d), cont(0), determ(det) {prendas= new Prenda*[det];}; //Constructor definido. Se inicializa el arreglo dinámico
   //Ambos constructores (mismo nombre y diferentes métodos), representan un ejemplo de sobrecarga.
   string get_tipo();
   int get_dia(); //Getters
@@ -29,53 +30,53 @@ public: //Métodos que hereda a clases hijas
   void agregarCompleto(string, string);
   void agregarZapatos(string, string, string);
   void resumenAtuendo(); //Método similar a un to_string para imprimir atributos de objeto Atuendo
-  //en cada clase hija se modifica por lo que ejemplifica la sobreescritura de métodos heredados
+  //en cada clase hija se modifica --> se  sobreescribe el métodos heredado
 };
 
 string Atuendo::get_tipo(){
   return tipo;
 }
 
-int  Atuendo::get_dia(){
+int Atuendo::get_dia(){
   return dia;
 }
 
-void  Atuendo::set_dia(int di){
+void Atuendo::set_dia(int di){
   dia=di;
 }
 
 void Atuendo::agregarSuperior(string mat, string col, string m){
-  prendas[i]=new Superior(mat, col, m); //Se crea el objeto dinamico en el heap para poder obtener y guardar su apuntador
-  i++;
+  prendas[cont]=new Superior(mat, col, m); //Se crea el objeto dinamico en el heap para poder obtener y guardar su apuntador
+  cont++;
 }
 
 void Atuendo::agregarInferior(string mat, string col, string l){
-  prendas[i]=new Inferior(mat, col, l);
-  i++;
+  prendas[cont]=new Inferior(mat, col, l);
+  cont++;
 }
 
 void Atuendo::agregarCompleto(string mat, string col){
-  prendas[i]=new Completo(mat, col);
-  i++;
+  prendas[cont]=new Completo(mat, col);
+  cont++;
 }
 void Atuendo::agregarZapatos(string mat, string col, string c){
-  prendas[i]=new Zapatos(mat, col, c);
-  i++;
+  prendas[cont]=new Zapatos(mat, col, c);
+  cont++;
 }
 
 //Clase hija Casual. Herencia pública de clase Atuendo
 class Casual: public Atuendo{
 public:
   Casual():Atuendo("Casual"){}; //Constructor default a partir del de Atuendo (solo con atributo característico/invariable de la clase hija)
-  Casual(int dI):Atuendo("Casual", dI){}; //Constructor completo definido (sobrecarga)
+  Casual(int dI, int det):Atuendo("Casual", dI, det){}; //Constructor completo definido (sobrecarga)
   void resumenAtuendo();
 };
-void Casual::resumenAtuendo(){
+void Casual::resumenAtuendo(){ //método heredado sobreescrito (en cada clase derivada)
   cout<<"Un atuendo casual, para uso cotidiano durante tu viaje, que has planteado usar en el dia "<<dia<<" de tu viaje."<<endl;
   cout<<"Este esta compuesto por..."<<endl;
-  for (int j=0;j<3;j++){
+  for (int j=0;j<determ;j++){
     cout<<"Prenda "<<prendas[j]->get_tipo()<<endl;
-    prendas[j]->infoPrenda();
+    prendas[j]->infoPrenda(); //aquí el método de infoPrenda actuará distinto para las prendas gracias al uso de polimorfismo en sus clases
   }
 }
 
@@ -85,7 +86,7 @@ private:
   string evento;
 public:
   Formal():Atuendo("Formal"){};
-  Formal(int dI, string ev):Atuendo("Formal", dI), evento(ev){};
+  Formal(int dI, string ev, int det):Atuendo("Formal", dI, det), evento(ev){};
   string get_evento();
   void set_evento(string);
   void resumenAtuendo(); //Sobreescritura del método (con respecto a clase Atuendo)
@@ -99,7 +100,7 @@ void Formal::set_evento(string e){
 void Formal::resumenAtuendo(){
   cout<<"Un atuendo formal, que has planteado usar en el dia "<<dia<<" de tu viaje, porque quizas tengas un evento: "<<evento<<endl;
   cout<<"Este esta compuesto por..."<<endl;
-  for (int j=0;j<3;j++){
+  for (int j=0;j<determ;j++){
     cout<<"Prenda "<<prendas[j]->get_tipo()<<endl;
     prendas[j]->infoPrenda();
   }
@@ -111,7 +112,7 @@ private:
   string tematica;
 public:
   Fiesta():Atuendo("Fiesta"){};
-  Fiesta(int dI, string tem):Atuendo("Fiesta", dI), tematica(tem){};
+  Fiesta(int dI, string tem, int det):Atuendo("Fiesta", dI, det), tematica(tem){};
   string get_tematica();
   void set_tematica(string);
   void resumenAtuendo();
@@ -125,9 +126,9 @@ void Fiesta::set_tematica(string t){
 void Fiesta::resumenAtuendo(){
   cout<<"Un atuendo para fiesta con tematica "<<tematica<<", que has planteado usar en el dia "<<dia<<" de tu viaje."<<endl;
   cout<<"Este esta compuesto por..."<<endl;
-  for (int j=0;j<3;j++){
+  for (int j=0;j<determ;j++){
     cout<<"Prenda "<<prendas[j]->get_tipo()<<endl;
-    prendas[j]->infoPrenda(); //aquí el método de infoPrenda actuará distinto para las prendas con el uso de polimorfismo en sus clases
+    prendas[j]->infoPrenda();
   }
 }
 
