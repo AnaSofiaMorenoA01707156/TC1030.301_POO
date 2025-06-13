@@ -39,6 +39,7 @@ Además, tratándose de una relación de composición directa en un mismo arregl
   - 6/06/2025: "Actualización: correcciones y uso de clases abstractas": Se actualizaron los 3 archivos de código con la implementación de clases abstractas en su funcionamiento y con correcciones
 + 7/06/2025: "Actualización UML": Correcciones al diagrama UML con base en los cambios en el código
 + 10/06/2025: "Adición de información al README.md" (x2): Se añadió información faltante en el README sobre el funcionamiento del código y sobre la documentación
++ 13/06/2025: "Acortado del main" (creo que no existe 'acortado'...): Se realizaron unas últimas modificaciones a la estructura del main para así reducir las líneas de código y su repetición, y hacerlo un poco más eficiente.
 
 # Documentación
 Braunschweig, D. (2018). *Fixed and dynamic arrays*. Pressbooks. https://press.rebus.community/programmingfundamentals/chapter/fixed-and-dynamic-arrays/
